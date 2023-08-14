@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Navbar = () => {
     return (
-        <div style={{backgroundColor:'#EFDBD4'}} className="navbar fixed px-16">
+        <div style={{backgroundColor:'#EFDBD4'}} className="navbar z-10 fixed px-16">
             <div className="flex-1">
                 <Link to={'/'} className="" draggable='true'><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_42xtbNkhsHeR0RhTTb0P-CtwvYe5pPi11g&usqp=CAU" className='w-20 rounded-full' alt="" /></Link>
             </div>
