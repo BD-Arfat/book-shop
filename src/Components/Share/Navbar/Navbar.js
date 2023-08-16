@@ -10,7 +10,7 @@ const Navbar = () => {
             <div className="flex-none gap-2">
                 <ul className="menu menu-horizontal px-1">
                     <li><Link to={'/'} className='font-bold text-lg'>Home</Link></li>
-                    <li><Link to={'/'} className='font-bold text-lg'>Products</Link></li>
+                    <li><Link to={'/Products'} className='font-bold text-lg'>Products</Link></li>
                 </ul>
                 <div className="dropdown dropdown-end">
                     <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
