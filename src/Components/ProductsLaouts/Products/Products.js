@@ -32,7 +32,7 @@ const Products = () => {
         content = <div>Products no found 😥😥😥</div>
     }
     if(!isLoading && !isError && books.length > 0){
-        content =books?.filter(book => {
+        content =books.filter(book => {
             if (Genre === 'drama') {
               return (book.Genre === Genre)
             }

@@ -5,21 +5,19 @@ import { jobType } from '../../../features/filter/filterSlice';
 const Selected = () => {
 
     const dispatch = useDispatch();
-  const handleFilter = (type) => {
-    dispatch(jobType(type))
-  }
+  
 
     return (
         <div>
             <h1 className='font-bold text-2xl mt-10 mb-4 text-left'>Selected books</h1>
-            <select className="select select-bordered w-full">
-                <option onClick={() => handleFilter('')} selected>All Books</option>
-                <option onClick={() => handleFilter('drama')}>drama</option>
-                <option onClick={() => handleFilter('story')}>story</option>
-                <option onClick={() => handleFilter('novel')}>novel</option>
-                <option onClick={() => handleFilter('poetry')}>poetry</option>
-                <option onClick={() => handleFilter('literature')}>literature</option>
-                <option onClick={() => handleFilter('independence')}>independence</option>
+            <select onChange={(e)=> dispatch(jobType(e.target.value))} className="select select-bordered w-full">
+                <option value='default' selected>All Books</option>
+                <option value='drama'>drama</option>
+                <option value='story'>story</option>
+                <option value='novel'>novel</option>
+                <option value='poetry'>poetry</option>
+                <option value='literature'>literature</option>
+                <option value='independence'>independence</option>
             </select>
         </div>
     );
