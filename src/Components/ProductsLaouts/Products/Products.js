@@ -1,23 +1,42 @@
-import React from 'react';
-import { useQuery } from 'react-query';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchBooks } from '../../../features/Books/BookkSlice'
+import Loding from '../../ExtraComponents/Loding';
 import Product from './Product';
 
 const Products = () => {
 
-    const { data: products = [] } = useQuery({
-        queryKey: ['products'],
-        queryFn: async () => {
-            const res = await fetch('http://localhost:5000/products');
-            const data = await res.json();
-            return data;
-        }
-    })
+    const dispatch = useDispatch();
+    const { books, isLoading, isError, error } = useSelector(state => state.books)
+
+    useEffect(() => {
+        dispatch(fetchBooks())
+    }, [dispatch]);
+
+    let content;
+
+    if (isLoading) content = <>
+    <Loding/>
+    <Loding/>
+    <Loding/>
+    <Loding/>
+    </>
+    if(!isLoading && isError) content = <>
+    <Loding/>
+    <Loding/>
+    <Loding/>
+    <Loding/>
+    </>
+    if(!isLoading && !isError && books.length === 0){
+        content = <div>Products no found 😥😥😥</div>
+    }
+    if(!isLoading && !isError && books.length > 0){
+        content = books.map(book => <Product book={book} key={book._id}/>)
+    }
 
     return (
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mb-20 gap-5 w-11/12 mx-auto'>
-            {
-                products.map(product => <Product key={product._id} product={product} />)
-            }
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-20'>
+            {content}
         </div>
     );
 };

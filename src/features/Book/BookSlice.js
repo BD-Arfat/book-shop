@@ -1,38 +1,38 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getBooks } from "./BooksApi";
+import { getBook } from "./BookApi";
 
 const initialState = {
-    books: [],
+    book: [],
     isLoading: false,
     isError: false,
     error: ''
 };
 
-export const fetchBooks = createAsyncThunk('books/fetchBooks', async () => {
-    const books = await getBooks();
-    return books
+export const fetchBook = createAsyncThunk('book/fetchBook', async () => {
+    const book = await getBook();
+    return book
 });
 
-const booksSlice = createSlice({
-    name: 'books',
+const bookSlice = createSlice({
+    name: 'book',
     initialState,
     extraReducers: (builder) => {
         builder
-            .addCase(fetchBooks.pending, (state) => {
+            .addCase(fetchBook.pending, (state) => {
                 state.isError = false;
                 state.isLoading = true;
             })
-            .addCase(fetchBooks.fulfilled, (state, action) => {
+            .addCase(fetchBook.fulfilled, (state, action) => {
                 state.isLoading = false;
-                state.books = action.payload;
+                state.book = action.payload;
             })
-            .addCase(fetchBooks.rejected, (state, action) => {
+            .addCase(fetchBook.rejected, (state, action) => {
                 state.isError = true;
                 state.isLoading = false;
-                state.books = []
+                state.book = []
                 state.error = action.error?.message;
             })
     }
 });
 
-export default booksSlice.reducer
+export default bookSlice.reducer

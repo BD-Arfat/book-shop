@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 
-const Product = ({product}) => {
-    const { image, name, Author, Genre, price, Published } = product;
+const Product = ({book}) => {
+    const { image, name, Author, Genre, price, Published } = book;
     return (
         <div>
             <div style={{ backgroundColor: '#E2CBC5' }} className="card w-60 mx-auto shadow-xl h-[450px] transform hover:scale-105 duration-500 ease-in-out">
