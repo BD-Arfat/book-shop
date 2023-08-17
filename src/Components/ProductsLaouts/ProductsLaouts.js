@@ -1,5 +1,7 @@
 import React from 'react';
 import AllProducts from './AllProducts/AllProducts';
+import Selected from './selected/Selected';
+import Price from './Price/Price';
 
 const ProductsLaouts = () => {
     return (
@@ -16,8 +18,8 @@ const ProductsLaouts = () => {
                     <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
                     <ul className="menu py-4 text-xl w-80 mx-auto h-full bg-base-200 text-base-content pt-28">
                         {/* Sidebar content here */}
-                        <><a>Sidebar Item 1</a></>
-                        <><a>Sidebar Item 2</a></>
+                        <><Selected/></>
+                        <><Price/></>
                     </ul>
 
                 </div>
