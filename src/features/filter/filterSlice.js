@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
   sort: '',
-  type: '',
+  Genre: '',
   search: ''
 }
 
@@ -11,7 +11,7 @@ const filterSlice = createSlice({
   initialState,
   reducers: {
     jobType: (state, action) => {
-      state.type = action.payload;
+      state.Genre = action.payload;
     },
     searchParam: (state, action) => {
       state.search = action.payload;
