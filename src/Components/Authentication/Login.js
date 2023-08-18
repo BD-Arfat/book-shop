@@ -12,12 +12,6 @@ const Login = () => {
                         <input
                             type="text"
                             class="block border border-grey-light w-full p-3 rounded mb-4"
-                            name="fullname"
-                            placeholder="Full Name" />
-
-                        <input
-                            type="text"
-                            class="block border border-grey-light w-full p-3 rounded mb-4"
                             name="email"
                             placeholder="Email" />
 
@@ -27,13 +21,13 @@ const Login = () => {
                             name="password"
                             placeholder="Password" />
                         <div className='text-left my-3 font-bold'>
-                            Have you registered? <Link className='text-slate-600' to={'/login'}>Login Now</Link>
+                        Have you not registered? <Link className='text-slate-600' to={'/products/register'}>Register Now</Link>
                         </div>
 
                         <button
                             type="submit"
                             class="w-full btn btn-outline text-center py-3 rounded bg-green text-black font-bold hover:bg-green-dark focus:outline-none my-1"
-                        >Register Now</button>
+                        >Login Now</button>
                     </div>
 
                 </div>

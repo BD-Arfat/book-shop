@@ -8,7 +8,7 @@ const Register = () => {
 <div class="bg-grey-lighter min-h-screen flex flex-col">
             <div class="container w-96 mt-32 mx-auto flex-1 flex flex-col items-center justify-center px-2">
                 <div style={{backgroundColor:'#EFDBD4'}} class=" px-6 py-8 rounded shadow-xl text-black w-full">
-                    <h1 class="mb-8 text-3xl text-center font-bold">Sign up</h1>
+                    <h1 class="mb-8 text-3xl text-center font-bold">Register Now</h1>
                     <input 
                         type="text"
                         class="block border border-grey-light w-full p-3 rounded mb-4"
@@ -27,7 +27,7 @@ const Register = () => {
                         name="password"
                         placeholder="Password" />
                         <div className='text-left my-3 font-bold'>
-                        Have you registered? <Link className='text-slate-600' to={'/login'}>Login Now</Link>
+                        Have you registered? <Link className='text-slate-600' to={'/products/login'}>Login Now</Link>
                         </div>
 
                     <button
