@@ -1,7 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Context/AuthContextProvider';
 
 const Navbar = () => {
+
+    const {user, logout} = useContext(AuthContext)
+
+    const handelLogout = () => {
+        logout()
+            .then(() => { })
+            .catch(error => { })
+    }
+
     return (
         <div style={{backgroundColor:'#EFDBD4'}} className="navbar z-10 fixed px-16">
             <div className="flex-1">
@@ -25,7 +35,9 @@ const Navbar = () => {
                             </a>
                         </li>
                         <li><Link to={'/products/register'}>Register</Link></li>
-                        <li><a>Logout</a></li>
+                        {
+                            user?.email ? <li onClick={handelLogout}><Link to={'/products/login'}>Logout</Link></li> : <li><Link to={'/products/login'}>Login</Link></li>
+                        }
                     </ul>
                 </div>
             </div>

@@ -9,6 +9,7 @@ import {
   QueryClient,
   QueryClientProvider,
 } from 'react-query'
+import AuthContextProvider from './Components/Context/AuthContextProvider';
 const queryClient = new QueryClient()
 
 const container = document.getElementById('root');
@@ -16,9 +17,11 @@ const root = createRoot(container);
 
 root.render(
   <QueryClientProvider client={queryClient}>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
+    <AuthContextProvider>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </AuthContextProvider>
   </QueryClientProvider>
 );
 

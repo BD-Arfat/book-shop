@@ -1,16 +1,40 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../Context/AuthContextProvider';
+import { toast } from 'react-hot-toast';
 
 const Login = () => {
+
+    const { loginUser } = useContext(AuthContext);
+
+        const handleLogin = e => {
+            e.preventDefault();
+            const form = e.target;
+            const email = form.email.value;
+            const password = form.password.value;
+
+            loginUser(email, password)
+            .then(res => {
+                const user = res.user;
+                toast.success('successfull you Login !!!!!!!!')
+                console.log(user)
+            })
+            .catch(error =>{
+                console.error(error);
+                toast.error(error.message)
+            })
+
+        }
+
     return (
         <div>
             {/* <!-- component --> */}
             <div class="bg-grey-lighter min-h-screen flex flex-col">
                 <div class="container w-96 mt-32 mx-auto flex-1 flex flex-col items-center justify-center px-2">
-                    <div style={{ backgroundColor: '#EFDBD4' }} class=" px-6 py-8 rounded shadow-xl text-black w-full">
+                    <form onSubmit={handleLogin} style={{ backgroundColor: '#EFDBD4' }} class=" px-6 py-8 rounded shadow-xl text-black w-full">
                         <h1 class="mb-8 text-3xl text-center font-bold">Login Now</h1>
                         <input
-                            type="text"
+                            type="email"
                             class="block border border-grey-light w-full p-3 rounded mb-4"
                             name="email"
                             placeholder="Email" />
@@ -28,7 +52,7 @@ const Login = () => {
                             type="submit"
                             class="w-full btn btn-outline text-center py-3 rounded bg-green text-black font-bold hover:bg-green-dark focus:outline-none my-1"
                         >Login Now</button>
-                    </div>
+                    </form>
 
                 </div>
             </div>
