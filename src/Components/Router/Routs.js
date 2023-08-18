@@ -5,6 +5,7 @@ import ProductsLaouts from "../ProductsLaouts/ProductsLaouts";
 import Nofooter from "../Share/noFooter/Nofooter";
 import Register from "../Authentication/Register";
 import Login from "../Authentication/Login";
+import PrivetRouts from "../PrivetRouts/PrivetRouts";
 
 export const router = createBrowserRouter([
     {
@@ -23,7 +24,7 @@ export const router = createBrowserRouter([
         children: [
             {
                 path:'/products',
-                element : <ProductsLaouts/>
+                element : <PrivetRouts><ProductsLaouts/></PrivetRouts>
             },{
                 path: '/products/register',
                 element: <Register/>
