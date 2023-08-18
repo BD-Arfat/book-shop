@@ -24,7 +24,7 @@ const Navbar = () => {
                                 Profile
                             </a>
                         </li>
-                        <li><a>Settings</a></li>
+                        <li><Link to={'/products/register'}>Register</Link></li>
                         <li><a>Logout</a></li>
                     </ul>
                 </div>
