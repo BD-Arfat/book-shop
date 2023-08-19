@@ -39,7 +39,10 @@ const Navbar = () => {
                             <Link to={'/Products/addProduct'}>Add Product <AiOutlinePlus className='text-xl'/></Link>
                         </li>
                         <li>
-                            <Link to={'/products/register'}>Your Cart <AiOutlineShoppingCart className='text-xl'/></Link>
+                            <Link to={'/Products/addProduct'}>Your Product</Link>
+                        </li>
+                        <li>
+                            <Link to={'/products/cart'}>Your Cart <AiOutlineShoppingCart className='text-xl'/></Link>
                         </li>
                         {
                             user?.email ? <li onClick={handelLogout}><Link to={'/products/login'}>Logout <AiOutlineLogout className='text-xl'/></Link></li> : <li><Link to={'/products/login'}>Login</Link></li>

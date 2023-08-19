@@ -1,9 +1,40 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../Context/AuthContextProvider';
+import { toast } from 'react-hot-toast';
 
 const HomeProduct = ({ product }) => {
     const { image, name, Author, Genre, price, Published } = product;
+    const {user} = useContext(AuthContext)
+
+    const handleOrder = () =>{
+        const order = {
+            image : image,
+            name : name,
+            Author : Author,
+            Genre : Genre,
+            price : price,
+            Published : Published,
+            email : user?.email
+        }
+    
+        fetch("http://localhost:5000/orders", {
+                method: "POST", // or 'PUT'
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(order),
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                toast.success('successfull add your Product');
+                // navigate('/products')
+            })
+    
+    }
+
     return (
         <div>
             <div style={{ backgroundColor: '#E2CBC5' }} className="card w-60 mx-auto shadow-xl h-[450px] transform hover:scale-105 duration-500 ease-in-out">
@@ -17,7 +48,7 @@ const HomeProduct = ({ product }) => {
                     <p className='my-1'>price: {price}৳</p>
                     <p className='my-1'>Published: {Published}</p>
                     <div className="text-center mt-4">
-                        <Link className="btn btn-active btn-link">Add To Cart <AiOutlineShoppingCart className='text-xl' /></Link>
+                        <Link onClick={handleOrder} className="btn btn-active btn-link">Add To Cart <AiOutlineShoppingCart className='text-xl' /></Link>
                     </div>
                 </div>
             </div>

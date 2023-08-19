@@ -3,6 +3,7 @@ import HomeProduct from './HomeProduct';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchBook } from '../../../../features/Book/BookSlice';
 import Loding from '../../../ExtraComponents/Loding';
+import { Link } from 'react-router-dom';
 
 const HomeProducts = () => {
 
@@ -42,9 +43,9 @@ const HomeProducts = () => {
                     content
                 }
             </div>
-            <button style={{backgroundColor:'#E2CBC5'}} className='px-28 font-bold btn mb-20'>
+            <Link to={'/Products'} style={{backgroundColor:'#E2CBC5'}} className='px-28 font-bold btn mb-20'>
                 See All Books
-            </button>
+            </Link>
         </div>
     );
 };
