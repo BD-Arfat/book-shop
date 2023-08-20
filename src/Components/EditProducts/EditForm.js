@@ -1,13 +1,15 @@
-import React, { useContext } from 'react';
-import { toast } from 'react-hot-toast';
-import { useNavigate } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Context/AuthContextProvider';
+import { toast } from 'react-hot-toast';
 
-const AddForm = () => {
+const EditForm = () => {
     const navigate = useNavigate();
     const {user} = useContext(AuthContext)
+    const storeProduct = useLoaderData();
+    const [product, setProduct] = useState(storeProduct)
 
-    const handelAddProduct = e => {
+    const handelAddProduct = (e) =>{
         e.preventDefault();
         const form = e.target;
         const name = form.name.value;
@@ -25,35 +27,33 @@ const AddForm = () => {
             price : price,
             Published: Published,
             email : user?.email
-        }
+        };
 
-        console.log(data);
-
-        fetch("http://localhost:5000/addProduct", {
-            method: "POST", // or 'PUT'
+        fetch(`http://localhost:5000/products/${storeProduct._id}`, {
+            method: "PUT", // or 'PUT'
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify(data),
         })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data);
-            toast.success('successfull add your Product');
-            navigate('/products')
-        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                toast.success('successfull add your Product');
+                navigate('/products/yourProducts')
+            })
 
     }
 
     return (
         <div className=''>
-
-            <div className="relative flex flex-col rounded-xl mt-5 mx-auto w-96 bg-transparent bg-clip-border text-gray-700 shadow-none">
+            <h1 className='font-bold text-4xl pt-40'>Edit Form</h1>
+            <div className="relative flex flex-col rounded-xl mx-auto w-96 bg-transparent bg-clip-border text-gray-700 shadow-none">
 
                 <form onSubmit={handelAddProduct} className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
                     <div className="mb-4 flex flex-col gap-6">
                         <div className="relative h-11 w-full min-w-[200px]">
-                            <input type='text' name='name'
+                            <input type='text' name='name' defaultValue={storeProduct.name}
                                 className="peer h-full w-full rounded-md border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-pink-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                                 placeHolder=" " required
                             />
@@ -62,7 +62,7 @@ const AddForm = () => {
                             </label>
                         </div>
                         <div className="relative h-11 w-full min-w-[200px]">
-                            <input name='Author' type='text'
+                            <input name='Author' type='text' defaultValue={storeProduct.Author}
                                 className="peer h-full w-full rounded-md border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-pink-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                                 placeHolder=" " required
                             />
@@ -71,7 +71,7 @@ const AddForm = () => {
                             </label>
                         </div>
                         <div className="">
-                            <select name='Genre'  className="select select-bordered peer h-full w-full rounded-md border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-pink-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
+                            <select name='Genre' defaultValue={storeProduct.Genre}  className="select select-bordered peer h-full w-full rounded-md border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-pink-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
                                 <option selected>drama</option>
                                 <option>story</option>
                                 <option>novel</option>
@@ -85,6 +85,7 @@ const AddForm = () => {
                             <input
                                 type="number"
                                 name='price'
+                                defaultValue={storeProduct.price}
                                 className="peer h-full w-full rounded-md border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-pink-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                                 placeHolder=" " required
                             />
@@ -97,6 +98,7 @@ const AddForm = () => {
                             <input
                                 type="date"
                                 name='Published'
+                                defaultValue={storeProduct.Published}
                                 className="peer h-full w-full rounded-md border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-pink-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                                 placeHolder=" " required
                             />
@@ -110,6 +112,7 @@ const AddForm = () => {
                             <input
                                 type="url"
                                 name='image'
+                                defaultValue={storeProduct.image}
                                 className="peer h-full w-full rounded-md border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-pink-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                                 placeHolder=" " required
                             />
@@ -135,4 +138,4 @@ const AddForm = () => {
     );
 };
 
-export default AddForm;
+export default EditForm;

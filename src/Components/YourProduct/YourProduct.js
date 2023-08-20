@@ -2,11 +2,13 @@ import React, { useContext } from 'react';
 import { toast } from 'react-hot-toast';
 import { useQuery } from 'react-query';
 import { AuthContext } from '../Context/AuthContextProvider';
+import { Link } from 'react-router-dom';
 
 const YourProduct = () => {
     const { user } = useContext(AuthContext)
 
     const url = `http://localhost:5000/addProduct?email=${user?.email}`
+    // const url = `http://localhost:5000/products`
 
     const { data: products = [], refetch } = useQuery({
         queryKey: ['products', user?.email],
@@ -22,14 +24,14 @@ const YourProduct = () => {
     const hendelDelete = (id) => {
         const proceeed = window.confirm(`Do you really want to delete this product?`);
         if (proceeed) {
-            fetch(`http://localhost:5000/order/${id}`, {
+            fetch(`http://localhost:5000/addProduct/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
                 .then(data => {
                     if (data.deletedCount > 0) {
                         refetch()
-                        toast.success('The Order you want to delete has been successfully deleted')
+                        toast.success('The Products you want to delete has been successfully deleted')
                     }
                 })
 
@@ -41,7 +43,7 @@ const YourProduct = () => {
             <div class="container mx-auto px-4 sm:px-8" draggable='true'>
                 <div class="py-36 text-left">
                     <div>
-                        <h2 class="text-2xl font-semibold leading-tight">Your Cart Items {products.length}</h2>
+                        <h2 class="text-2xl font-semibold leading-tight">You have added these products ({products.length})</h2>
                     </div>
                     <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
                         <div
@@ -122,7 +124,8 @@ const YourProduct = () => {
                                                 </span>
                                             </td>
                                             <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                                <span
+                                                <Link
+                                                to={`/products/editForm/${order._id}`}
                                                     class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight"
                                                 >
                                                     <span
@@ -130,7 +133,7 @@ const YourProduct = () => {
                                                         class="absolute inset-0 bg-green-200 opacity-50 rounded-full"
                                                     ></span>
                                                     <span class="relative cursor-pointer">Edit</span>
-                                                </span>
+                                                </Link>
                                             </td>
                                             <td
                                                 class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-right"

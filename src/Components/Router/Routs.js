@@ -9,6 +9,7 @@ import PrivetRouts from "../PrivetRouts/PrivetRouts";
 import AddProducts from "../AddProducts/AddProducts";
 import Cart from "../Cart/Cart";
 import YourProduct from "../YourProduct/YourProduct";
+import EditForm from "../EditProducts/EditForm";
 
 export const router = createBrowserRouter([
     {
@@ -44,6 +45,10 @@ export const router = createBrowserRouter([
             },{
                 path : '/products/yourProducts',
                 element : <YourProduct></YourProduct>
+            },{
+                path: '/products/editForm/:id',
+                element : <EditForm/>,
+                loader : ({params}) => fetch(`http://localhost:5000/products/${params.id}`)
             }
         ]
     }
