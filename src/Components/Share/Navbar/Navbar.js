@@ -39,7 +39,7 @@ const Navbar = () => {
                             <Link to={'/Products/addProduct'}>Add Product <AiOutlinePlus className='text-xl'/></Link>
                         </li>
                         <li>
-                            <Link to={'/Products/addProduct'}>Your Product</Link>
+                            <Link to={'/products/yourProducts'}>Your Product</Link>
                         </li>
                         <li>
                             <Link to={'/products/cart'}>Your Cart <AiOutlineShoppingCart className='text-xl'/></Link>

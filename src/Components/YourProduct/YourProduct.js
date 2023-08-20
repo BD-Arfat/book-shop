@@ -1,16 +1,15 @@
 import React, { useContext } from 'react';
-import { AuthContext } from '../Context/AuthContextProvider';
-import { useQuery } from 'react-query';
 import { toast } from 'react-hot-toast';
+import { useQuery } from 'react-query';
+import { AuthContext } from '../Context/AuthContextProvider';
 
-const Cart = () => {
-
+const YourProduct = () => {
     const { user } = useContext(AuthContext)
 
-    const url = `http://localhost:5000/order?email=${user?.email}`
+    const url = `http://localhost:5000/addProduct?email=${user?.email}`
 
-    const { data: orders = [], refetch } = useQuery({
-        queryKey: ['order', user?.email],
+    const { data: products = [], refetch } = useQuery({
+        queryKey: ['products', user?.email],
         queryFn: async () => {
             const res = await fetch(url, {
 
@@ -42,7 +41,7 @@ const Cart = () => {
             <div class="container mx-auto px-4 sm:px-8" draggable='true'>
                 <div class="py-36 text-left">
                     <div>
-                        <h2 class="text-2xl font-semibold leading-tight">Your Cart Items {orders.length}</h2>
+                        <h2 class="text-2xl font-semibold leading-tight">Your Cart Items {products.length}</h2>
                     </div>
                     <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
                         <div
@@ -74,7 +73,7 @@ const Cart = () => {
                                         <th
                                             class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider"
                                         >
-                                            Payment Now
+                                            Edit Products
                                         </th>
                                         <th
                                             class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100"
@@ -83,7 +82,7 @@ const Cart = () => {
                                 </thead>
 
                                 {
-                                    orders.map(order => <tbody key={order._id}>
+                                    products.map(order => <tbody key={order._id}>
                                         <tr>
                                             <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                                 <div class="flex">
@@ -130,7 +129,7 @@ const Cart = () => {
                                                         aria-hidden
                                                         class="absolute inset-0 bg-green-200 opacity-50 rounded-full"
                                                     ></span>
-                                                    <span class="relative">Paid</span>
+                                                    <span class="relative cursor-pointer">Edit</span>
                                                 </span>
                                             </td>
                                             <td
@@ -150,4 +149,4 @@ const Cart = () => {
     );
 };
 
-export default Cart;
+export default YourProduct;

@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../Context/AuthContextProvider';
 
 const AddForm = () => {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const {user} = useContext(AuthContext)
 
     const handelAddProduct = e => {
         e.preventDefault();
@@ -21,7 +23,8 @@ const AddForm = () => {
             Genre : Genre,
             image : image,
             price : price,
-            Published: Published
+            Published: Published,
+            email : user?.email
         }
 
         console.log(data);
