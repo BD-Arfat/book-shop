@@ -48,7 +48,7 @@ export const router = createBrowserRouter([
             },{
                 path: '/products/editForm/:id',
                 element : <EditForm/>,
-                loader : ({params}) => fetch(`http://localhost:5000/products/${params.id}`)
+                loader : ({params}) => fetch(`https://book-shop-rho-blush.vercel.app/products/${params.id}`)
             }
         ]
     }

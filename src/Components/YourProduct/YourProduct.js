@@ -7,8 +7,8 @@ import { Link } from 'react-router-dom';
 const YourProduct = () => {
     const { user } = useContext(AuthContext)
 
-    const url = `http://localhost:5000/addProduct?email=${user?.email}`
-    // const url = `http://localhost:5000/products`
+    const url = `https://book-shop-rho-blush.vercel.app/addProduct?email=${user?.email}`
+    // const url = `https://book-shop-rho-blush.vercel.app/products`
 
     const { data: products = [], refetch } = useQuery({
         queryKey: ['products', user?.email],
@@ -24,7 +24,7 @@ const YourProduct = () => {
     const hendelDelete = (id) => {
         const proceeed = window.confirm(`Do you really want to delete this product?`);
         if (proceeed) {
-            fetch(`http://localhost:5000/addProduct/${id}`, {
+            fetch(`https://book-shop-rho-blush.vercel.app/addProduct/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())

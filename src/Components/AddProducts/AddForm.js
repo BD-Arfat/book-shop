@@ -29,7 +29,7 @@ const AddForm = () => {
 
         console.log(data);
 
-        fetch("http://localhost:5000/addProduct", {
+        fetch("https://book-shop-rho-blush.vercel.app/addProduct", {
             method: "POST", // or 'PUT'
             headers: {
                 "Content-Type": "application/json",

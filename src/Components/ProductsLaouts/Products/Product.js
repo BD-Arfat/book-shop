@@ -19,7 +19,7 @@ const Product = ({book}) => {
             email : user?.email
         }
     
-        fetch("http://localhost:5000/orders", {
+        fetch("https://book-shop-rho-blush.vercel.app/orders", {
                 method: "POST", // or 'PUT'
                 headers: {
                     "Content-Type": "application/json",
