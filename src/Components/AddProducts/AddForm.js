@@ -46,9 +46,10 @@ const AddForm = () => {
     }
 
     return (
+        // add product form start
         <div className=''>
-
-            <div className="relative flex flex-col rounded-xl mt-5 mx-auto w-96 bg-transparent bg-clip-border text-gray-700 shadow-none">
+        
+        <div className="relative flex flex-col rounded-xl mt-5 mx-auto w-96 bg-transparent bg-clip-border text-gray-700 shadow-none">
 
                 <form onSubmit={handelAddProduct} className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
                     <div className="mb-4 flex flex-col gap-6">
@@ -132,6 +133,7 @@ const AddForm = () => {
             </div>
 
         </div>
+    // add products form end
     );
 };
 
