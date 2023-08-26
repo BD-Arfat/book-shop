@@ -38,6 +38,7 @@ const Cart = () => {
     }
 
     return (
+        // start cart items
         <div>
             <div class="container mx-auto px-4 sm:px-8" draggable='true'>
                 <div class="py-36 text-left">
@@ -146,7 +147,9 @@ const Cart = () => {
                         </div>
                     </div>
                 </div>
-            </div></div>
+            </div>
+        </div>
+                                               // end cart items
     );
 };
 
